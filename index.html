@@ -1,0 +1,239 @@
+<!DOCTYPE>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>员工基本信息管理</title>
+	<link rel = "stylesheet" type = "text/css" href="style.css">
+	<script src="function.js">
+	</script>
+</head>
+<body onload="updateNumber();showitem();init();">
+	<div class="main">
+		<div class="head">
+			<div class="headline">
+			</div>
+			<div class="headtitle">
+				员工信息管理系统
+			</div>
+			<div class="headline">
+			</div>
+		</div>
+		
+		<div class="up-bottom">
+			<div class="up-greenbottom" onclick="openadd()">
+				新增
+			</div>
+			<div class="up-redbottom" onclick="delAll()">
+				删除
+			</div>
+			<div class="up-bluebottom" onclick="chooseModify()">
+				修改
+			</div>
+		</div>
+		
+		<div class="content">
+			<table width="1488.61px" id="mytable">
+				<thead>
+					<tr>
+						<th width="3.3%"><input type="checkbox"/></td>
+						<th width="5%">序号</th>
+						<th width="17%">工号</th>
+						<th width="9.6%">姓名</th>
+						<th width="22%">部门</th>
+						<th width="9.8%">职务</th>
+						<th width="8.8%">工龄</th>
+						<th width="4.5%">是否入党</th>
+						<th width="7%">年龄</th>
+						<th width="13%">操作</th>
+					</tr>
+				</thead>
+				<tbody id="listTable">
+				</tbody>
+			</table>
+		</div>
+		
+		<div class="buttom">
+			<div class="buttom-text">
+				<p id="info">这里会显示页面信息</p><input type="text" value="10" id="pageitem"/><p>条）</p>
+			</div>
+			<div class="down-purplebottom" onclick="turnFinalPage()">
+				尾页
+			</div>
+			<div class="down-yellowbottom" onclick="turnFirstPage()">
+				首页
+			</div>
+			<div class="down-redbottom" onclick="nextpage()">
+				下一页
+			</div>
+			<div class="down-bluebottom" onclick="turnPage()">
+				跳转
+			</div>
+			<input type="text" class="down-input" id="jump"/>
+			<div class="down-greenbottom" onclick="boforepage()">
+				上一页
+			</div>
+		</div>
+		
+		<div class="addblock-greybac" id="addback">
+		</div>
+		
+		<div class="addblock" id="addcon">
+			<div class="addblock-title">
+				新增员工信息
+			</div>
+			<div class="addblock-form">
+				<div class="addblock-item">
+					工号：<input type="text" name="" id="num" class="addblock-item-blank"/>
+					<p id="err1"></p>
+				</div>
+				<div class="addblock-item">
+					姓名：<input type="text" name="" id="username" class="addblock-item-blank"/>
+					<p id="err2"></p>
+				</div>
+				<div class="addblock-item">
+					部门：<input type="text" name="" id="college" class="addblock-item-blank"/>
+					<p id="err3"></p>
+				</div>
+				<div class="addblock-item">
+					职务：<input type="text" name="" id="major" class="addblock-item-blank"/>
+					<p id="err4"></p>
+				</div>
+				<div class="addblock-item">
+					工龄：<input type="text" name="" id="grade" class="addblock-item-blank"/>
+					<p id="err5"></p>
+				</div>
+				<div class="addblock-item">
+					是否入党：<input type="text" name="" id="class" class="addblock-item-blank"/>
+					<p id="err6"></p>
+				</div>
+				<div class="addblock-item">
+					年龄：<input type="text" name="" id="age" class="addblock-item-blank"/>
+					<p id="err7"></p>
+				</div>
+			</div>
+			<div class="addblock-bottom">
+				<div class="addblock-buttom" onclick="closeadd()">
+					取消
+				</div>
+				<div class="addblock-buttom" onclick="addList()">
+					提交
+				</div>
+			</div>
+		</div>
+		
+		<div class="addblock" id="checkcon">
+			<div class="addblock-title">
+				查看员工信息
+			</div>
+			<div class="addblock-form">
+				<div class="addblock-item">
+					<span id = "check-num"></span>
+				</div>
+				<div class="addblock-item">
+					<span id = "check-username"></span>
+				</div>
+				<div class="addblock-item">
+					<span id = "check-college"></span>
+				</div>
+				<div class="addblock-item">
+					<span id = "check-major"></span>
+				</div>
+				<div class="addblock-item">
+					<span id = "check-grade"></span>
+				</div>
+				<div class="addblock-item">
+					<span id = "check-class1"></span>
+				</div>
+				<div class="addblock-item">
+					<span id = "check-age"></span>
+				</div>
+			</div>
+			<div class="addblock-bottom">
+				<div class="addblock-buttom" onclick="closecheck()">
+					取消
+				</div>
+			</div>
+		</div>
+		
+		<div class="addblock" id="modifycon">
+			<div class="addblock-title">
+				修改员工信息
+			</div>
+			<div class="addblock-form">
+				<div class="addblock-item">
+					工号：<input type="text" name="" id="mod-num" class="addblock-item-blank"/>
+				</div>
+				<div class="addblock-item">
+					姓名：<input type="text" name="" id="mod-username" class="addblock-item-blank"/>
+				</div>
+				<div class="addblock-item">
+					部门：<input type="text" name="" id="mod-college" class="addblock-item-blank"/>
+				</div>
+				<div class="addblock-item">
+					职务：<input type="text" name="" id="mod-major" class="addblock-item-blank"/>
+				</div>
+				<div class="addblock-item">
+					工龄：<input type="text" name="" id="mod-grade" class="addblock-item-blank"/>
+				</div>
+				<div class="addblock-item">
+					是否入党：<input type="text" name="" id="mod-class" class="addblock-item-blank"/>
+				</div>
+				<div class="addblock-item">
+					年龄：<input type="text" name="" id="mod-age" class="addblock-item-blank"/>
+				</div>
+			</div>
+			<div class="addblock-bottom">
+				<div class="addblock-buttom" onclick="closemod()">
+					取消
+				</div>
+				<div class="addblock-buttom" onclick="update()">
+					确定
+				</div>
+			</div>
+		</div>
+		
+		<div class="addblock" id="choosemodifycon">
+			<div class="addblock-title">
+				修改员工信息
+			</div>
+			<div class="addblock-form">
+				<div class="addblock-item">
+					工号：<input type="text" name="" id="Cmod-num" class="addblock-item-blank"/>
+				</div>
+				<div class="addblock-item">
+					姓名：<input type="text" name="" id="Cmod-username" class="addblock-item-blank"/>
+				</div>
+				<div class="addblock-item">
+					部门：<input type="text" name="" id="Cmod-college" class="addblock-item-blank"/>
+				</div>
+				<div class="addblock-item">
+					职务：<input type="text" name="" id="Cmod-major" class="addblock-item-blank"/>
+				</div>
+				<div class="addblock-item">
+					工龄：<input type="text" name="" id="Cmod-grade" class="addblock-item-blank"/>
+				</div>
+				<div class="addblock-item">
+					是否入党：<input type="text" name="" id="Cmod-class" class="addblock-item-blank"/>
+				</div>
+				<div class="addblock-item">
+					年龄：<input type="text" name="" id="Cmod-age" class="addblock-item-blank"/>
+				</div>
+			</div>
+			<div class="addblock-bottom">
+				<p class="addblock-bottom-text" id="bottomText">共X条，Y条已修改，Z条待修改。</p>
+				<div class="addblock-buttom" onclick="closeChooseModify()" id="CMcancel">
+					取消
+				</div>
+				<div class="addblock-buttom-hidden" onclick="chooseUpdate()" id="CMinput">
+					<p>确定</p>
+				</div>
+				<div class="addblock-buttom-hidden" onclick="chooseUpdateNext()" id="CMnextPage">
+					<p>下一条</p>
+				</div>
+				<div class="addblock-buttom-hidden" onclick="chooseUpdateBefore()" id="CMbeforePage">
+					<p>上一条</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
